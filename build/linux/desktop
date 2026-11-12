@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=My Product
+Comment=A template_wails_dashboard application
+# The Exec line includes %u to pass the URL to the application
+Exec=/usr/local/bin/template_wails_dashboard %u
+Terminal=false
+Type=Application
+Icon=template_wails_dashboard
+Categories=Utility;
+StartupWMClass=template_wails_dashboard
+
+ 
