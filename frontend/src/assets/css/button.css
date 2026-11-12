@@ -1,0 +1,26 @@
+/* Shared icon-only button look (currently just the sidebar collapse
+   toggles, but kept generic for anything else that needs an icon button). */
+.icon-button {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius);
+  background-color: transparent;
+  color: var(--color-on-surface-variant);
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.icon-button:hover {
+  background-color: rgba(var(--c-surface-variant), 0.4);
+  color: var(--color-primary);
+}
+
+.icon-button:active {
+  transform: scale(0.95);
+}

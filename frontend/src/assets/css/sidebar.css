@@ -1,0 +1,46 @@
+/* Left/right floating sidebars. Always full height; width is fluid so the
+   shell never overflows as the window is resized, and collapses to a thin
+   rail (just the toggle button) when the user hides it. */
+.sidebar {
+  position: relative;
+  flex: 0 0 auto;
+  height: 100%;
+  width: clamp(13rem, 20vw, 18rem);
+  padding: var(--space-md);
+  overflow: hidden;
+  z-index: 20;
+}
+
+.sidebar--right {
+  width: clamp(14rem, 22vw, 20rem);
+}
+
+.sidebar.is-collapsed {
+  width: 3.5rem;
+  min-width: 3.5rem;
+  padding: var(--space-sm);
+}
+
+.sidebar__toggle {
+  position: absolute;
+  top: var(--space-sm);
+}
+
+.sidebar--left .sidebar__toggle {
+  right: var(--space-sm);
+}
+
+.sidebar--left.is-collapsed .sidebar__toggle {
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sidebar--right .sidebar__toggle {
+  left: var(--space-sm);
+}
+
+.sidebar--right.is-collapsed .sidebar__toggle {
+  left: 50%;
+  transform: translateX(-50%);
+}

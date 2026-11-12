@@ -1,0 +1,22 @@
+/* Shared "floating glass" shell used by both sidebars, the content header
+   and the central canvas. Padding, width/height and layout are left to the
+   component using it (.sidebar, .content-header, .content-canvas, …) — this
+   class only owns the surface: border, fill, blur and shadow. */
+.panel {
+  box-sizing: border-box;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(var(--c-outline-variant), 0.3);
+  background-color: rgba(var(--c-surface-container-low), 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 25px 50px -12px rgba(var(--c-surface-container-lowest), 0.8);
+  transition:
+    width 0.2s ease,
+    min-width 0.2s ease,
+    padding 0.2s ease;
+}
+
+/* Lighter shadow variant, used by the content header's thin bar. */
+.panel--sm-shadow {
+  box-shadow: 0 10px 15px -3px rgba(var(--c-surface-container-lowest), 0.5);
+}

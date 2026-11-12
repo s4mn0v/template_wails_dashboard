@@ -1,0 +1,59 @@
+/* Reset + document-level rules. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-surface-container-lowest);
+  color: var(--color-on-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden; /* all scrolling happens inside .content-canvas */
+
+  /* This is an app shell, not a document — nothing in the chrome is
+     text-selectable. Form controls opt back in below. The window is
+     dragged by its background; interactive elements opt out. */
+  -webkit-user-select: none;
+  user-select: none;
+  --wails-draggable: drag;
+
+  /* Soft dot-grid backdrop. */
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+}
+
+button,
+a,
+[role="button"] {
+  --wails-draggable: no-drag;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+input,
+textarea,
+select {
+  --wails-draggable: no-drag;
+  -webkit-user-select: text;
+  user-select: text;
+  font-family: inherit;
+}
+
+.material-symbols-outlined {
+  display: inline-block;
+  line-height: 1;
+}
