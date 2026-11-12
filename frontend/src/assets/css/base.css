@@ -53,7 +53,10 @@ select {
   font-family: inherit;
 }
 
-.material-symbols-outlined {
-  display: inline-block;
-  line-height: 1;
+/* Icons compile to inline <svg> (via unplugin-icons, see vite.config.ts) and
+   already paint with currentColor — this just keeps them from shrinking in
+   flex rows and from picking up stray baseline gaps. */
+svg {
+  flex-shrink: 0;
+  display: block;
 }
