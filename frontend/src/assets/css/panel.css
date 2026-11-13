@@ -9,7 +9,7 @@
   background-color: rgba(var(--c-surface-container-low), 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 25px 50px -12px rgba(var(--c-surface-container-lowest), 0.8);
+  box-shadow: 0 25px 50px -12px rgba(var(--c-shadow), calc(0.8 * var(--shadow-strength)));
   transition:
     width 0.2s ease,
     min-width 0.2s ease,
@@ -18,5 +18,5 @@
 
 /* Lighter shadow variant, used by the content header's thin bar. */
 .panel--sm-shadow {
-  box-shadow: 0 10px 15px -3px rgba(var(--c-surface-container-lowest), 0.5);
+  box-shadow: 0 10px 15px -3px rgba(var(--c-shadow), calc(0.5 * var(--shadow-strength)));
 }

@@ -1,7 +1,10 @@
 /* Design tokens — the single place to restyle the template. Nothing else
    in /src should hardcode a color, spacing or radius value directly. */
 :root {
-  /* ----- Core palette (dark, Material-ish) ----- */
+  /* ----- Core palette ----- */
+  /* These are the defaults ("Synthesis") painted before JS runs. At runtime
+     themes/applyTheme.ts overrides every color token on <html> from the
+     catalog in themes/catalog.ts — add or edit palettes there, not here. */
   --color-surface: #131315;
   --color-surface-container-lowest: #0e0e10;
   --color-surface-container-low: #1c1b1d;
@@ -13,6 +16,8 @@
   --color-on-surface: #e5e1e4;
   --color-on-surface-variant: #c4c7c9;
   --color-primary: #ffffff;
+  --color-accent: #a8c7fa;
+  --color-shadow: #0e0e10;
 
   /* Same colors as "r, g, b" triplets, for alpha compositing via
      rgba(var(--c-name), <alpha>) — plain hex can't take a runtime alpha. */
@@ -20,8 +25,15 @@
   --c-surface-container-low: 28, 27, 29;
   --c-surface-variant: 53, 52, 55;
   --c-outline-variant: 68, 71, 73;
+  --c-on-surface: 229, 225, 228;
   --c-on-surface-variant: 196, 199, 201;
   --c-primary: 255, 255, 255;
+  --c-accent: 168, 199, 250;
+  --c-shadow: 14, 14, 16;
+
+  /* Multiplier for shadow alphas (light themes use a much softer value). */
+  --shadow-strength: 1;
+  color-scheme: dark;
 
   /* ----- Spacing scale ----- */
   --space-xs: 0.25rem;
