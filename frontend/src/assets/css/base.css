@@ -20,11 +20,12 @@ body {
   overflow: hidden; /* all scrolling happens inside .content-canvas */
 
   /* This is an app shell, not a document — nothing in the chrome is
-     text-selectable. Form controls opt back in below. The window is
-     dragged by its background; interactive elements opt out. */
+     text-selectable. Form controls opt back in below. No region declares
+     --wails-draggable: the window is moved only by its native title bar,
+     so clicks/double-clicks on empty space never drag, maximize or
+     minimize it. */
   -webkit-user-select: none;
   user-select: none;
-  --wails-draggable: drag;
 
   /* Soft dot-grid backdrop. */
   background-image: radial-gradient(rgba(var(--c-on-surface), 0.07) 1px, transparent 1px);
@@ -39,7 +40,6 @@ body {
 button,
 a,
 [role="button"] {
-  --wails-draggable: no-drag;
   cursor: pointer;
   font-family: inherit;
 }
@@ -47,7 +47,6 @@ a,
 input,
 textarea,
 select {
-  --wails-draggable: no-drag;
   -webkit-user-select: text;
   user-select: text;
   font-family: inherit;
