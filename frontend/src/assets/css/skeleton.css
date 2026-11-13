@@ -1,0 +1,129 @@
+/* Skeleton placeholders (components/skeleton). Colors derive from the
+   active theme's foreground, so they read correctly on dark and light
+   palettes alike. */
+
+/* ----- Primitive ----- */
+.skeleton {
+  display: block;
+  flex-shrink: 0;
+  max-width: 100%;
+  border-radius: var(--radius);
+  background-color: rgba(var(--c-on-surface), 0.08);
+}
+
+.skeleton--pill,
+.skeleton--circle {
+  border-radius: var(--radius-full);
+}
+
+/* ----- Layout helpers shared by the examples ----- */
+.skeleton-row {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-width: 0;
+}
+
+.skeleton-row--between {
+  justify-content: space-between;
+}
+
+.skeleton-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  min-width: 0;
+}
+
+.skeleton-grow {
+  flex: 1 1 auto;
+}
+
+/* Inner card: a quiet, flat surface inside a glass panel. */
+.skeleton-card {
+  padding: var(--space-md);
+  border: 1px solid rgba(var(--c-outline-variant), 0.35);
+  border-radius: var(--radius-lg);
+  background-color: rgba(var(--c-on-surface), 0.02);
+}
+
+/* ----- Left sidebar: navigation ----- */
+.skeleton-nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding-top: 0.25rem; /* line the brand up with the collapse toggle */
+}
+
+.skeleton-nav__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.skeleton-nav__item {
+  padding-left: var(--space-xs);
+}
+
+.skeleton-nav__user {
+  margin-top: auto;
+}
+
+/* ----- Header ----- */
+.skeleton-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+@media (max-width: 900px) {
+  .skeleton-header__search {
+    display: none;
+  }
+}
+
+/* ----- Canvas: dashboard ----- */
+.skeleton-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.skeleton-dashboard__kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: var(--space-md);
+}
+
+.skeleton-chart {
+  height: 11rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  padding-top: var(--space-sm);
+}
+
+.skeleton-chart > .skeleton {
+  flex: 1 1 0;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.skeleton-table__row {
+  padding: var(--space-sm) 0;
+  border-top: 1px solid rgba(var(--c-outline-variant), 0.25);
+}
+
+/* ----- Right sidebar: activity ----- */
+.skeleton-activity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding-top: 2.5rem; /* clear the collapse toggle */
+}
+
+.skeleton-activity__item {
+  align-items: flex-start;
+}
