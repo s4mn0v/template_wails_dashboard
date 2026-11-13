@@ -1,0 +1,204 @@
+/* Floating theme picker (components/theme/ThemeSwitcher.vue), pinned to the
+   bottom-right corner, inset so it sits inside the right sidebar's corner
+   rather than on top of its border. */
+.theme-switcher {
+  position: fixed;
+  right: calc(var(--margin-mobile) + var(--space-sm));
+  bottom: calc(var(--margin-mobile) + var(--space-sm));
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-sm);
+}
+
+@media (min-width: 1024px) {
+  .theme-switcher {
+    right: calc(var(--margin) + var(--space-md));
+    bottom: calc(var(--margin) + var(--space-md));
+  }
+}
+
+/* ----- Trigger: a round icon button that widens into a pill on
+   hover/keyboard focus to reveal the active theme's name. ----- */
+.theme-switcher__trigger {
+  display: inline-flex;
+  align-items: center;
+  height: 2.25rem;
+  /* (2.25rem - 2px border - 16px icon) / 2 → the icon sits dead center. */
+  padding: 0 calc((2.25rem - 2px - 16px) / 2);
+  border-radius: var(--radius-full);
+  color: var(--color-on-surface-variant);
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    padding 0.2s ease,
+    transform 0.15s ease;
+}
+
+.theme-switcher__label {
+  max-width: 0;
+  margin-left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  transition:
+    max-width 0.22s ease,
+    margin-left 0.22s ease,
+    opacity 0.15s ease;
+}
+
+.theme-switcher__trigger:hover,
+.theme-switcher__trigger:focus-visible {
+  padding-right: 0.875rem;
+}
+
+.theme-switcher__trigger:hover .theme-switcher__label,
+.theme-switcher__trigger:focus-visible .theme-switcher__label {
+  max-width: 10rem;
+  margin-left: var(--space-sm);
+  opacity: 1;
+}
+
+.theme-switcher__trigger:hover,
+.theme-switcher__trigger[aria-expanded="true"] {
+  color: var(--color-primary);
+  border-color: rgba(var(--c-accent), 0.45);
+}
+
+.theme-switcher__trigger:active {
+  transform: scale(0.97);
+}
+
+.theme-switcher__trigger:focus-visible {
+  outline: 2px solid rgba(var(--c-accent), 0.7);
+  outline-offset: 2px;
+}
+
+/* ----- Menu ----- */
+.theme-switcher__menu {
+  width: 15rem;
+  padding: var(--space-xs);
+  overflow: hidden; /* rounded corners clip the scrolling list */
+  transform-origin: bottom right;
+  /* Mostly opaque: list text must stay legible over busy content. */
+  background-color: rgba(var(--c-surface-container-low), 0.96);
+}
+
+.theme-switcher__list {
+  max-height: min(22rem, 60vh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 2px; /* breathing room next to the thin scrollbar */
+}
+
+.theme-switcher__heading {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: var(--space-sm) var(--space-sm) var(--space-xs);
+  background-color: var(--color-surface-container-low);
+  color: var(--color-outline);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.theme-option {
+  display: grid;
+  grid-template-columns: 1rem 1fr auto;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: 0.4375rem var(--space-sm);
+  border: none;
+  border-radius: var(--radius-lg);
+  background-color: transparent;
+  color: var(--color-on-surface-variant);
+  font-size: 0.8125rem;
+  text-align: left;
+  transition:
+    background-color 0.12s ease,
+    color 0.12s ease;
+}
+
+.theme-option:hover,
+.theme-option:focus-visible {
+  outline: none;
+  background-color: rgba(var(--c-surface-variant), 0.6);
+  color: var(--color-on-surface);
+}
+
+.theme-option[aria-checked="true"] {
+  color: var(--color-on-surface);
+}
+
+.theme-option__check {
+  display: flex;
+  color: var(--color-accent);
+}
+
+.theme-option__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Mini preview of the theme in its own colors. */
+.theme-option__swatch {
+  display: inline-flex;
+  gap: 3px;
+  padding: 3px 5px;
+  border: 1px solid;
+  border-radius: var(--radius-full);
+}
+
+.theme-option__swatch > span {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: var(--radius-full);
+}
+
+/* Menu open/close. */
+.theme-menu-enter-active,
+.theme-menu-leave-active {
+  transition:
+    opacity 0.16s ease,
+    transform 0.16s ease;
+}
+
+.theme-menu-enter-from,
+.theme-menu-leave-to {
+  opacity: 0;
+  transform: translateY(6px) scale(0.98);
+}
+
+/* ----- Circular reveal (themes/circularReveal.ts) ----- */
+/* View Transitions path: drop the default cross-fade; the script animates
+   the new snapshot's clip-path instead. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Fallback path for webviews without View Transitions. */
+.theme-reveal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  clip-path: circle(0px at 50% 50%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-switcher__trigger,
+  .theme-switcher__label,
+  .theme-menu-enter-active,
+  .theme-menu-leave-active {
+    transition: none;
+  }
+}

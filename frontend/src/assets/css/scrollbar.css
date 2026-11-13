@@ -1,0 +1,40 @@
+/* Minimal themed scrollbar for every scroll container — replaces the native
+   one. A thin, rounded thumb on a transparent track that firms up on hover
+   and picks up the accent while dragged. Colors come from tokens, so it
+   follows the active theme. */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(var(--c-on-surface-variant), 0.22);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(var(--c-on-surface-variant), 0.4);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: rgba(var(--c-accent), 0.7);
+}
+
+/* Engines without ::-webkit-scrollbar (Firefox) use the standard properties.
+   Gated so they don't override the WebKit/Chromium styling above: in
+   Chromium, setting them disables ::-webkit-scrollbar entirely. */
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--c-on-surface-variant), 0.3) transparent;
+  }
+}
