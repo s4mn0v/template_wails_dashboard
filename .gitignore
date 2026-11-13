@@ -14,3 +14,4 @@ build/android/gen/
 # Local Claude Code settings (per-machine permission grants, not shared)
 .claude/settings.local.json
 split-commits.sh
+.codegraph/
